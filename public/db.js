@@ -33,12 +33,14 @@ function saveRecord(record) {
 }
 
 function checkDatabase() {
+  console.log('Checking database')
   // open a transaction on your pending db
   const transaction = db.transaction(["pending"], "readwrite");
   // access your pending object store
   const store = transaction.objectStore("pending");
   // get all records from store and set to a variable
   const getAll = store.getAll();
+  console.log('Got all records', getAll)
 
   getAll.onsuccess = function() {
     if (getAll.result.length > 0) {
